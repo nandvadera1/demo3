@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['can:admin', 'verified']], f
     Route::get('vouchers/dataTable',[VouchersController::class,'dataTable']);
     Route::get('transactions/dataTable',[AdminTransactionController::class,'dataTable']);
     Route::get('voucher_blocks/dataTable', [VoucherBlockController::class, 'dataTable']);
+    Route::get('files/dataTable', [FileController::class, 'dataTable']);
 
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
@@ -52,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['can:admin', 'verified']], f
     Route::resource('campaigns', CampaignController::class);
     Route::resource('vouchers', VouchersController::class);
     Route::resource('transactions', AdminTransactionController::class);
+    Route::resource('files', FileController::class);
 //    Route::resource('voucher_blocks', VoucherBlockController::class);
 
     Route::get('transactions/points/{user}', [AdminTransactionController::class, 'points']);
@@ -64,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['can:admin', 'verified']], f
 
     Route::get('pdf/view/{voucherBlock}', [PDFController::class, 'pdfView'])->name('pdf.view');
     Route::get('pdf/convert/{voucherBlock}', [PDFController::class, 'pdfGenerate'])->name('pdf.convert');
+    Route::get('files/download/{file}', [FileController::class, 'download']);
 });
 
 Route::group(['prefix'=>'user', 'middleware' => ['user_verified', 'verified']],function (){

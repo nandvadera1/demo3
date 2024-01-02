@@ -353,6 +353,13 @@ return [
             'icon' => 'fas fa-history',
             'can' => 'user',
         ],
+        [
+            'text' => 'Files',
+            'url' => '/admin/files',
+            'active' => ['/admin/files'],
+            'icon' => 'fas fa-history',
+            'can' => 'admin',
+        ],
 
     ],
 
